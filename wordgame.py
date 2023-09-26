@@ -8,64 +8,15 @@ import numpy as np
 import random
 import pandas as pd
 import re
+from string import ascii_lowercase
+import os
 
 
 # -----Functions
 
 def number_assigning(let):
-    if let == 'a':
-        num = 1
-    elif let == 'b':
-        num = 2
-    elif let == 'c':
-        num = 3
-    elif let == 'd':
-        num = 4
-    elif let == 'e':
-        num = 5
-    elif let == 'f':
-        num = 6
-    elif let == 'g':
-        num = 7
-    elif let == 'h':
-        num = 8
-    elif let == 'i':
-        num = 9
-    elif let == 'j':
-        num = 10
-    elif let == 'k':
-        num = 11
-    elif let == 'l':
-        num = 12
-    elif let == 'm':
-        num = 13
-    elif let == 'n':
-        num = 14
-    elif let == 'o':
-        num = 15
-    elif let == 'p':
-        num = 16
-    elif let == 'q':
-        num = 17
-    elif let == 'r':
-        num = 18
-    elif let == 's':
-        num = 19
-    elif let == 't':
-        num = 20
-    elif let == 'u':
-        num = 21
-    elif let == 'v':
-        num = 22
-    elif let == 'w':
-        num = 23
-    elif let == 'x':
-        num = 24
-    elif let == 'y':
-        num = 25
-    elif let == 'z':
-        num = 26
-    return(num)
+    num = ascii_lowercase.find(let)
+    return num+1
 
 
 def compare(b, a):
@@ -78,30 +29,46 @@ def compare(b, a):
     return answer
 
 
-def word_generator():
+def word_generator(diction):
 
-    #words = np.genfromtxt('dictionary.csv', dtype='float', delimiter=',', skip_header=0)
-    randomnum = random.randint(1, 32304)
-    df = pd.read_csv('dictionary.csv')
-    word = df.iloc[randomnum, 0]
+    dictionary = pd.read_csv(diction)
+
+    randomnum = random.randint(1, dictionary.size)
+
+    word = dictionary.iloc[randomnum, 0]
+
     return word
 
 
 def guessed_word():
     guessword = []
-    # try:
     guess = input(('guess word '))
     guess = guess.lower()
     re.sub(r'[^a-z]*', "", guess)
     print(guess)
-    # except
     for y in guess:
         guessword.append(number_assigning(y))
     return guessword
 
 
+def dict_menu():
+    files = os.listdir(os.getcwd()+'/dicts')
+    for f in enumerate(files):
+        list(f)
+        print(str(f[0]+1)+'. '+f[1])
+    try:
+        dict_choice = int(input('Enter the number of the dictionary you want to use: '))
+        choice = files[(dict_choice-1)]
+    except IndexError:
+        print("I'm sorry that is not a valid dictionary please try again")
+        choice = dict_menu()
+
+    return choice
+
+
 def main_code():
-    random_word = word_generator()
+
+    random_word = word_generator('dicts/' + dict_menu())
 
     numword = []
     for x in random_word:
@@ -138,12 +105,12 @@ def main_code():
 
     print('Well done, {} was the word, it took you {} guesses'.format(
         random_word, counter))
-    again = input('Would you like to play again? ')
+    again = input('Would you like to play again? yes or no ')
     return again
 
 # -----Main Code
 
 
-main_code()
-while main_code() in ('yes', 'YES', 'Yes'):
-    main_code()
+play = main_code()
+while play.lower() == 'yes':
+    play = main_code()
