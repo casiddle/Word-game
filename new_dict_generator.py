@@ -17,12 +17,13 @@ def dict_gen(file_name):
     words = file.read()
     words = words.lower()
 
-    tokenizer = RegexpTokenizer(r'[a-z]\w+\w{3}')
+    #tokenizer = RegexpTokenizer(r'[a-z]\w+\w{3}')
+    tokenizer = RegexpTokenizer(r'\b[a-z]+[a-z]{3}')
     string = tokenizer.tokenize(words)
     no_duplicates = list(set(string))
-    print(no_duplicates)
+    #print(no_duplicates)
     with open('dicts/'+(file_name+'.csv'), 'w') as new_dict:
         new_dict.write('\n'.join(no_duplicates))
 
 
-dict_gen('bee-movie.txt')
+dict_gen('easy.txt')

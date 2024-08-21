@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carys' Word Guessing Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Carys' Word Guessing Game</h1>
+    <form id="start-game-form">
+        <button type="submit">Start Game</button>
+    </form>
+
+    <div id="game-area" style="display:none;">
+        <p id="instructions">Guess the word by typing below:</p>
+        <input type="text" id="guess" name="guess">
+        <button id="guess-button">Submit Guess</button>
+        <p id="feedback"></p>
+        <div id="guess-history"></div>
+        
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
