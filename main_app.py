@@ -102,8 +102,8 @@ def guess():
         guessed_word_numbers = [number_assigning(char) for char in guessed_word]
 
         # Initialize response and message
-        response = 'wrong'
-        message = 'Incorrect guess, try again!'
+        response = 'default'
+        message = 'default'
 
         # Compare guessed word with the target word
         if guessed_word_numbers == numword:

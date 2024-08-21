@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             gameArea.style.display = 'block';
-            instructions.innerText = `Guess a word, word:${data.word}`;
+            instructions.innerText = "Guess a word"; //, word:${data.word}";
             guessHistory.innerHTML="";
             feedback.innerText="";
         })
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
             feedback.innerText = data.result;
             // Update guess history
             const newHistoryItem = document.createElement('p');
-            newHistoryItem.innerText = `Guess: ${guess}, Result: ${data.result}`;
+            newHistoryItem.innerText = `Guess: ${guess}, Result: ${data.result.toUpperCase()}`;
 
                 
             // Prepend the new history item to the top

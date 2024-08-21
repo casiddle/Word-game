@@ -2,6 +2,19 @@ body {
   font-family: Arial, sans-serif;
   text-align: center;
   margin-top: 50px;
+  color: #000000;
+  background-color: #e6c5ec;
+}
+button{
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #bb16d8;
+  text-decoration: wavy;
+  font-size: 16px;          
+  margin: 4px 2px;  
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+
 }
 
 #game-area {
@@ -15,6 +28,6 @@ body {
   border-top: 1px solid #000000;
   max-height: auto; /* Adjust height as needed */
   overflow-y: auto; /* Allows scrolling if there are many guesses */
-  background-color: #d8d818;
+  background-color: #d81895;
   color:black;
 }
