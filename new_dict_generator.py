@@ -26,4 +26,4 @@ def dict_gen(file_name):
         new_dict.write('\n'.join(no_duplicates))
 
 
-dict_gen('easy.txt')
+dict_gen('1000-most-common-words.txt')

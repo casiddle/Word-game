@@ -73,21 +73,29 @@ def index():
 @app.route('/start_game', methods=['POST'])
 def start_game():
     try:
-        random_word = word_generator(r"dicts\easy.txt.csv")
-        numword = [number_assigning(char) for char in random_word]
+      data = request.get_json()
+      dictionary_choice = data.get('dictionary_choice')
+    
+      if not dictionary_choice:
+        return jsonify({"error": "Dictionary choice is required"}), 400
+     # dictionary_choice = request.form['dictionary_choice']
+      random_word = word_generator('dicts/' + dictionary_choice)
+      numword = [number_assigning(char) for char in random_word]
 
-        session['numword'] = numword
-        session['random_word'] = random_word
-        session['counter'] = 0
-        session["guess_history"]=[]
+      session['numword'] = numword
+      session['random_word'] = random_word
+      session['counter'] = 0
+      session["guess_history"]=[]
 
-        return jsonify({"word_length": len(random_word), "word":random_word})
+      return jsonify({"word_length": len(random_word), "word":random_word})
     except Exception as e:
         print(f"Error: {e}")
         return jsonify({"error": "An error occurred"}), 500
 
 @app.route('/guess', methods=['POST'])
 def guess():
+    data = request.get_json()
+    print(f"Received data: {data}")  # Debug line
     try:
         # Retrieve guess and session variables
         guessed_word = request.json.get('guess', '').lower()

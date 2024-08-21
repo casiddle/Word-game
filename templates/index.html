@@ -10,9 +10,17 @@
     <h1>Carys' Word Guessing Game</h1>
     <p>Guess a word. If the randomly generated word comes after yours in 
       the dictionary, the game will respond higher. If the randomly generated word comes before yours in the dictionary
-      the game will respod lower. Keep going until you guess the word!
+      the game will respod lower. Keep going until you guess the word! The easy dictionary consists of the 
+      100 most common words in the english language, the medium consists of 1000 and the hard dictionary consists of all the words.
     </p>
     <form id="start-game-form">
+        <label for="dictionary_choice">Choose a dictionary:</label>
+        <select id="dictionary_choice" name="dictionary_choice">
+            <option value="easy.txt.csv">Easy</option>
+            <option value="1000-most-common-words.txt.csv">Medium</option>
+            <option value="dictionary.csv">Hard</option>
+            <!-- Add more options as needed -->
+        </select>
         <button type="submit">Start Game</button>
     </form>
 

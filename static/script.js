@@ -15,14 +15,21 @@ document.addEventListener('DOMContentLoaded', function() {
     // Start game form submission
     startForm.addEventListener('submit', function(e) {
         e.preventDefault();
+        const dictionaryChoice = document.getElementById('dictionary_choice').value;
 
         fetch('/start_game', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            body: JSON.stringify({ dictionary_choice: dictionaryChoice })
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => {
             gameArea.style.display = 'block';
             instructions.innerText = "Guess a word"; //, word:${data.word}";
@@ -74,3 +81,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
