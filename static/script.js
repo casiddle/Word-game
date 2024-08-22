@@ -5,7 +5,28 @@ document.addEventListener('DOMContentLoaded', function() {
     const guessInput = document.getElementById('guess');
     const guessButton = document.getElementById('guess-button');
     const feedback = document.getElementById('feedback');
-    const guessHistory = document.getElementById('guess-history');
+    const guessHistory = document.getElementById("guess-history");
+    const giveupButton=document.getElementById("give-up");
+    const giveUpModal = document.getElementById('give-up-modal');
+    const closeButton = document.getElementById('close-button');
+    const giveUpMessage = document.getElementById('give-up-message');
+    const closeSpan = document.getElementsByClassName('close')[0];
+    const successModal = document.getElementById('successModal');
+    const successClose = document.getElementById('successClose');
+    const successMessage = document.getElementById('successMessage');
+
+    // Restart the game
+    function restartGame() {
+        // Reset the game area
+        gameArea.style.display = 'none';
+        instructions.innerText = '';
+        guessHistory.innerHTML = '';
+        feedback.innerText = '';
+        guessInput.value = '';
+    
+
+        startForm.submit();
+    }
 
     if (!startForm || !gameArea || !instructions || !guessInput || !guessButton || !feedback||!guessHistory) {
         console.error('One or more required elements are missing in the HTML.');
@@ -72,13 +93,63 @@ document.addEventListener('DOMContentLoaded', function() {
             guessInput.value="";
 
             if (data.result === 'correct') {
-                alert(data.message);
-                gameArea.style.display = 'none';
+                successMessage.innerText = ` ${data.message}`;
+                successModal.style.display = 'block'; // Show the success modal
             }
         })
         .catch(error => {
             console.error('Error making guess:', error);
         });
+    });
+
+    // Close modal when the user clicks on <span> (x)
+    successClose.addEventListener('click', function() {
+        successModal.style.display = 'none'; // Hide the success modal
+        restartGame(); // Restart the game after closing the modal
+    });
+
+    // Close modal when the user clicks anywhere outside of the modal
+    window.addEventListener('click', function(event) {
+        if (event.target === successModal) {
+            successModal.style.display = 'none'; // Hide the success modal
+            restartGame(); // Restart the game after closing the modal
+        }
+    });
+
+    giveupButton.addEventListener("click", function(){
+        // Fetch the word from the server (assuming it's stored in a session or similar)
+        fetch('/give_up', {
+            method: 'GET',
+              })
+        .then(response => response.json())
+        .then(data => {
+             // Display the message in the modal
+             giveUpMessage.innerText = `The word was: ${data.word}, you had ${data.counter} guesses before giving up`;
+             giveUpModal.style.display = "block";
+            })
+        .catch(error => {
+            console.error('Error giving up:', error);
+        });
+    });
+
+    // When the user clicks on <span> (x), close the modal
+    closeSpan.addEventListener('click', function() {
+        giveUpModal.style.display = "none";
+        restartGame();
+    });
+
+    // When the user clicks the close button, close the modal and restart the game
+    closeButton.addEventListener('click', function() {
+        giveUpModal.style.display = "none";
+        restartGame();
+    });
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.addEventListener('click', function(event) {
+        if (event.target == giveUpModal) {
+            giveUpModal.style.display = "none";
+            restartGame();
+        }
     });
 });
 

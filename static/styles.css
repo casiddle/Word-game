@@ -1,9 +1,14 @@
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  margin-top: 50px;
+  margin-top: 3%;
   color: #000000;
   background-color: #e6c5ec;
+  padding: 1%;
+  margin:1%;
+}
+h1 {
+  font-size: 500%;
 }
 button{
   font-family: Arial, Helvetica, sans-serif;
@@ -30,4 +35,57 @@ button{
   overflow-y: auto; /* Allows scrolling if there are many guesses */
   background-color: #d81895;
   color:black;
+}
+
+/* The Modal (background) */
+.modal {
+  margin:0;
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #e6c5ec;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #d81895;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #d81895;
+  float: right;
+  font-size: 28px;
+}
+
+.close:hover,
+.close:focus {
+  color: #8a115f;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Close Button in Modal */
+#close-button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #d81895;
+  color: rgb(0, 0, 0);
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#close-button:hover {
+  background-color: #8a115f;
 }

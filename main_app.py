@@ -142,6 +142,23 @@ def guess():
     except Exception as e:
         print(f"Error: {e}")
         return jsonify({"error": "An error occurred"}), 500
+    
+@app.route('/give_up', methods=['GET'])
+def give_up():
+    try:
+        # Retrieve the current word from the session or where it's stored
+        word = session.get('random_word') 
+        counter=session.get("counter")
+
+        if not word:
+            return jsonify({"error": "No game in progress"}), 400
+
+        return jsonify({"word": word, "counter":counter})
+
+    except Exception as e:
+        print(f"Error in /give_up: {e}")  # Log the error
+        return jsonify({"error": "An error occurred while processing the give up request"}), 500
+
 
 if __name__ == "__main__":
     app.run(debug=True)
