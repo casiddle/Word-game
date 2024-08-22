@@ -108,23 +108,39 @@ def guess():
         else:
             # Provide feedback based on the comparison
             #for i in range(min(len(numword), len(guessed_word_numbers))):
-            for i in range(len(numword)):
-                comp_result = compare(guessed_word_numbers[i], numword[i])
-                if comp_result in ['higher', 'lower']:
-                    message = f"Guess is wrong."
-                    response=f"{comp_result}"
-                elif comp_result=="same":
-                    if len(guessed_word_numbers)>len(numword):
-                        message = f"Guess is too high."
-                        response=f"lower"
-                        comp_result="lower"
-                    else:
-                        message = f"Guess is too low."
-                        response=f"higher"
-                        comp_result="lower"
+            # for i in range(len(numword)):
+            #     comp_result = compare(guessed_word_numbers[i], numword[i])
+            #     if comp_result in ['higher', 'lower']:
+            #         message = f"Guess is wrong."
+            #         response=f"{comp_result}"
+            #     elif comp_result=="same":
+            #         if len(guessed_word_numbers)>len(numword):
+            #             message = f"Guess is too high."
+            #             response=f"lower"
+            #             comp_result="lower"
+            #         else:
+            #             message = f"Guess is too low."
+            #             response=f"higher"
+            #             comp_result="lower"
+            if len(numword) < len(guessed_word_numbers):
+                for element in range(0, len(numword)):
+                    response = compare(guessed_word_numbers[element], numword[element])
+                    if response == 'higher' or response == 'lower':
+                        break
 
+            else:
+                for element in range(0, len(guessed_word_numbers)):
+                    response = compare(guessed_word_numbers[element], numword[element])
 
-                    break
+                    if response == 'higher' or response == 'lower':
+                        break
+
+            if response == 'same':
+                if len(numword) < len(guessed_word_numbers):
+                    print('lower')
+                elif len(guessed_word_numbers) < len(numword):
+                    print('higher')
+                
         #Update guess history
         guess_result={
             "guess":guessed_word, 
