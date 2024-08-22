@@ -25,6 +25,7 @@ def compare(b, a):
         answer = ('higher')
     elif a < b:
         answer = ('lower')
+    print("comparison: "+answer)
     return answer
 
 
@@ -50,19 +51,6 @@ def guessed_word(guess):
     return guessword
 
 
-def dict_menu():
-    files = os.listdir(os.getcwd()+'/dicts')
-    for f in enumerate(files):
-        list(f)
-        print(str(f[0]+1)+'. '+f[1])
-    try:
-        dict_choice = int(input('Enter the number of the dictionary you want to use: '))
-        choice = files[(dict_choice-1)]
-    except IndexError:
-        print("I'm sorry that is not a valid dictionary please try again")
-        choice = dict_menu()
-
-    return choice
 
 
 
@@ -119,11 +107,23 @@ def guess():
             message = f"Well done, {random_word} was the word, it took you {counter + 1} guesses."
         else:
             # Provide feedback based on the comparison
-            for i in range(min(len(numword), len(guessed_word_numbers))):
+            #for i in range(min(len(numword), len(guessed_word_numbers))):
+            for i in range(len(numword)):
                 comp_result = compare(guessed_word_numbers[i], numword[i])
                 if comp_result in ['higher', 'lower']:
-                    message = f"Guess is too {comp_result}."
+                    message = f"Guess is wrong."
                     response=f"{comp_result}"
+                elif comp_result=="same":
+                    if len(guessed_word_numbers)>len(numword):
+                        message = f"Guess is too high."
+                        response=f"lower"
+                        comp_result="lower"
+                    else:
+                        message = f"Guess is too low."
+                        response=f"higher"
+                        comp_result="lower"
+
+
                     break
         #Update guess history
         guess_result={
