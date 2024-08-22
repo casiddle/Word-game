@@ -138,8 +138,10 @@ def guess():
             if response == 'same':
                 if len(numword) < len(guessed_word_numbers):
                     print('lower')
+                    response="lower"
                 elif len(guessed_word_numbers) < len(numword):
                     print('higher')
+                    response="higher"
                 
         #Update guess history
         guess_result={

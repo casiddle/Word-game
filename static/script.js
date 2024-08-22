@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(data => {
             gameArea.style.display = 'block';
-            instructions.innerText = `Guess a word `;
+            instructions.innerText = `Guess a word`;
             guessHistory.innerHTML="";
             feedback.innerText="";
         })
