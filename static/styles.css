@@ -8,17 +8,41 @@ body {
   margin:1%;
 }
 h1 {
-  font-size: 500%;
+  font-size: 6vw;
+  text-decoration: underline;
+  text-decoration-style:wavy;
+  text-decoration-thickness: 2px;
+  line-height: 10%;
+}
+
+
+
+em {
+  font-weight: bold;
 }
 button{
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #bb16d8;
+  background-color: #d81895;
   text-decoration: wavy;
   font-size: 16px;          
   margin: 4px 2px;  
   border: none;
   border-radius: 50%;
   padding: 10px;
+
+}
+
+#guess{
+  background-color: #e9d5ec;
+  border-color: #d81895;
+}
+
+#dictionary_choice{
+  background-color: #e9d5ec;
+  border-color: #d81895;
+  font-size: 100%;
+  width: 10%;
+  height:100%;
 
 }
 
