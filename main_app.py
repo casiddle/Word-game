@@ -74,6 +74,7 @@ def start_game():
       session['random_word'] = random_word
       session['counter'] = 0
       session["guess_history"]=[]
+      print("Word:"+random_word)
 
       return jsonify({"word_length": len(random_word), "word":random_word})
     except Exception as e:
@@ -87,6 +88,7 @@ def guess():
     try:
         # Retrieve guess and session variables
         guessed_word = request.json.get('guess', '').strip().lower()
+        print(guessed_word+"?")
         numword = session.get('numword')
         random_word = session.get('random_word')
         counter = session.get('counter', 0)
@@ -127,7 +129,7 @@ def guess():
                 elif len(guessed_word_numbers) < len(numword):
                     print('higher')
                     response="higher"
-                
+        print("guessedword:"+guessed_word+"...")      
         #Update guess history
         guess_result={
             "guess":guessed_word, 
