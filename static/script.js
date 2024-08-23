@@ -151,5 +151,25 @@ document.addEventListener('DOMContentLoaded', function() {
             restartGame();
         }
     });
+
+
+    const title = document.getElementById("title_val");
+    
+    // Define the hover functions
+    function titleHover() {
+        title.style.fontSize = "6vw";
+    }
+    
+    function titleNormal() {
+        title.style.fontSize = "4vw";
+     }
+    
+    // Add event listeners to the title element
+    title.addEventListener("mouseover", titleHover);
+    title.addEventListener("mouseout", titleNormal);
+    
+
+    
 });
+
 
