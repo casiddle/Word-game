@@ -88,7 +88,6 @@ def guess():
     try:
         # Retrieve guess and session variables
         guessed_word = request.json.get('guess', '').strip().lower()
-        print(guessed_word+"?")
         numword = session.get('numword')
         random_word = session.get('random_word')
         counter = session.get('counter', 0)
@@ -124,12 +123,9 @@ def guess():
 
             if response == 'same':
                 if len(numword) < len(guessed_word_numbers):
-                    print('lower')
                     response="lower"
                 elif len(guessed_word_numbers) < len(numword):
-                    print('higher')
-                    response="higher"
-        print("guessedword:"+guessed_word+"...")      
+                    response="higher"    
         #Update guess history
         guess_result={
             "guess":guessed_word, 
