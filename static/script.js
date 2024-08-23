@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
             guessInput.value="";
 
             if (data.result === 'correct') {
-                successMessage.innerText = ` ${data.message}`;
+                successMessage.innerHTML = ` ${data.message}`;
                 successModal.style.display = 'block'; // Show the success modal
             }
         })
@@ -153,21 +153,21 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 
-    const title = document.getElementById("title_val");
-    
-    // Define the hover functions
-    function titleHover() {
-        title.style.fontSize = "6vw";
+
+    const alphabet = document.getElementById("alphabetModal")
+    const book = document.getElementById("fa-book")
+
+    function bookHover() {
+        alphabet.style.display = "block";
     }
     
-    function titleNormal() {
-        title.style.fontSize = "4vw";
-     }
-    
-    // Add event listeners to the title element
-    title.addEventListener("mouseover", titleHover);
-    title.addEventListener("mouseout", titleNormal);
-    
+    function bookNormal() {
+        alphabet.style.display = "none";
+    }
+
+    book.addEventListener("mouseover", bookHover);
+    book.addEventListener("mouseout", bookNormal);
+
 
     
 });

@@ -105,7 +105,7 @@ def guess():
         # Compare guessed word with the target word
         if guessed_word_numbers == numword:
             response = 'correct'
-            message = f"Well done, {random_word} was the word, it took you {counter + 1} guesses."
+            message = f"Well done, <em>{random_word}</em> was the word, it took you {counter + 1} guesses."
         else:
             # Provide feedback based on the comparison
             if len(numword) < len(guessed_word_numbers):

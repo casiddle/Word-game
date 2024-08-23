@@ -9,7 +9,7 @@
     <script src="{{ url_for('static', filename='script.js') }}" defer></script>
 </head>
 <body>
-    <h1 id="title_val">Carys' Word Game <i class="fa fa-book" aria-hidden="true"></i></h1>
+    <h1 id="title_val">Carys' Word Game <i class="fa fa-book" aria-hidden="true" id="fa-book"></i></h1>
     
     <p>The game will generate a word, you have to guess that word. If the randomly generated word comes <em>after</em> yours in 
       the dictionary, the game will respond <strong>higher</strong>. If the word comes <em>before</em> yours in the dictionary
@@ -47,6 +47,12 @@
         <div class="modal-content">
             <span class="close" id="successClose">&times;</span>
             <p id="successMessage"></p>
+        </div>
+    </div>
+
+    <div id="alphabetModal" class="modal">
+        <div class="modal-content" id="alphabet-content">
+            <p id="alphabet">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</p>
         </div>
     </div>
 
