@@ -23,7 +23,7 @@
             <option value="1000-most-common-words.txt.csv">Medium</option>
             <option value="dictionary.csv">Hard</option>
         </select>
-        <button type="submit">Start Game</button>
+        <button type="submit" id="start-button">Start Game</button>
     </form>
 
     <div id="game-area" style="display:none;">
@@ -55,6 +55,7 @@
             <p id="alphabet">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</p>
         </div>
     </div>
-
+    <!--img src="images/book-image.jpg" alt="Book with words coming out" id="book-image"-->
+    <img src="{{ url_for('static', filename='images/book-image.png') }}" alt="Book with words coming out" id="book-image">
 </body>
 </html>

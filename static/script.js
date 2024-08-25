@@ -15,11 +15,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const successModal = document.getElementById('successModal');
     const successClose = document.getElementById('successClose');
     const successMessage = document.getElementById('successMessage');
+    const bookImage=document.getElementById("book-image");
 
     // Restart the game
     function restartGame() {
         // Reset the game area
         startForm.style.display="block"
+        bookImage.style.display="block"
         gameArea.style.display = "none";
         instructions.innerText = "";
         guessHistory.innerHTML = "";
@@ -49,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
    
         const dictionaryChoice = document.getElementById('dictionary_choice').value;
         startForm.style.display="none"
+        //bookImage.style.display="none"
         fetch('/start_game', {
             method: 'POST',
             headers: {

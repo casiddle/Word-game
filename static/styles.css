@@ -21,6 +21,14 @@ em {
   font-weight: bold;
 }
 
+img {
+  width: 60%;  
+  height: auto;  
+  display: block;
+  
+}
+
+
 button{
   font-family: Arial, Helvetica, sans-serif;
   background-color: #d81895;
