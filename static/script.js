@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function restartGame() {
         // Reset the game area
         startForm.style.display="block"
-        bookImage.style.display="block"
         gameArea.style.display = "none";
         instructions.innerText = "";
         guessHistory.innerHTML = "";
@@ -51,7 +50,6 @@ document.addEventListener('DOMContentLoaded', function() {
    
         const dictionaryChoice = document.getElementById('dictionary_choice').value;
         startForm.style.display="none"
-        //bookImage.style.display="none"
         fetch('/start_game', {
             method: 'POST',
             headers: {
