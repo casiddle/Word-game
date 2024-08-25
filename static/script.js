@@ -159,6 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function bookHover() {
         alphabet.style.display = "block";
+        document.getElementById("guess").blur();
     }
     
     function bookNormal() {
