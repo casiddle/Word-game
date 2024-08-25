@@ -18,11 +18,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Restart the game
     function restartGame() {
         // Reset the game area
-        gameArea.style.display = 'none';
-        instructions.innerText = '';
-        guessHistory.innerHTML = '';
-        feedback.innerText = '';
-        guessInput.value = '';
+        startForm.style.display="block"
+        gameArea.style.display = "none";
+        instructions.innerText = "";
+        guessHistory.innerHTML = "";
+        feedback.innerText = "";
+        guessInput.value = "";
     
 
         startForm.submit();
@@ -37,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
     startForm.addEventListener('submit', function(e) {
         e.preventDefault();
         const dictionaryChoice = document.getElementById('dictionary_choice').value;
-
+        startForm.style.display="none"
         fetch('/start_game', {
             method: 'POST',
             headers: {
