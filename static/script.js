@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const startForm = document.getElementById('start-game-form');
+    const startButton=document.getElementById("start-button");
     const gameArea = document.getElementById('game-area');
     const instructions = document.getElementById('instructions');
     const guessInput = document.getElementById('guess');
@@ -37,6 +38,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Start game form submission
     startForm.addEventListener('submit', function(e) {
         e.preventDefault();
+        startButton.style.backgroundColor="#8a115f";
+        setTimeout(() => {
+            startButton.style.backgroundColor= "#d81895";
+        }, 100);
+        if (!guess) {
+            alert('Please enter a guess.');
+            return;
+        }
+   
         const dictionaryChoice = document.getElementById('dictionary_choice').value;
         startForm.style.display="none"
         fetch('/start_game', {
@@ -66,7 +76,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Guess submission
     guessButton.addEventListener('click', function() {
         const guess = guessInput.value;
-
+        guessButton.style.backgroundColor="#8a115f";
+        setTimeout(() => {
+            guessButton.style.backgroundColor= "#d81895";
+        }, 100);
         if (!guess) {
             alert('Please enter a guess.');
             return;
@@ -118,6 +131,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     giveupButton.addEventListener("click", function(){
+        giveupButton.style.backgroundColor="#8a115f";
+        setTimeout(() => {
+            giveupButton.style.backgroundColor= "#d81895";
+        }, 100);
         // Fetch the word from the server (assuming it's stored in a session or similar)
         fetch('/give_up', {
             method: 'GET',
