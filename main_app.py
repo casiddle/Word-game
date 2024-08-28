@@ -52,7 +52,7 @@ def guessed_word(guess):
 
 
 
-with open('dicts/dictionary.csv', 'r') as file:
+with open('dicts/dictionary_complete.csv', 'r') as file:
     complete_dictionary = set(word.strip().lower() for word in file)
 
 @app.route("/")
