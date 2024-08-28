@@ -43,10 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             startButton.style.backgroundColor= "#d81895";
         }, 100);
-        if (!guess) {
-            alert('Please enter a guess.');
-            return;
-        }
+      
    
         const dictionaryChoice = document.getElementById('dictionary_choice').value;
         startForm.style.display="none"
@@ -76,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Guess submission
     guessButton.addEventListener('click', function() {
-        const guess = guessInput.value;
+        const guess = guessInput.value.trim();
         guessButton.style.backgroundColor="#8a115f";
         setTimeout(() => {
             guessButton.style.backgroundColor= "#d81895";
@@ -86,6 +83,10 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
+        if (!/^[a-zA-Z]+$/.test(guess)) {
+            alert('Please ensure your guess only contains letters a-z, no symbols, spaces etc. ');
+            return;
+        }
         fetch('/guess', {
             method: 'POST',
             headers: {

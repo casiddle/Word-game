@@ -87,7 +87,7 @@ def guess():
     print(f"Received data: {data}")  # Debug line
     try:
         # Retrieve guess and session variables
-        guessed_word = request.json.get('guess', '').strip().lower()
+        guessed_word = request.json.get('guess', '').lower()
         numword = session.get('numword')
         random_word = session.get('random_word')
         counter = session.get('counter', 0)
