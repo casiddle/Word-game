@@ -13,7 +13,7 @@ from nltk.tokenize import RegexpTokenizer
 
 
 def dict_gen(file_name):
-    file = open(file_name, 'r')
+    file = open(file_name, 'r',encoding='utf-8')
     words = file.read()
     words = words.lower()
 
@@ -22,8 +22,8 @@ def dict_gen(file_name):
     string = tokenizer.tokenize(words)
     no_duplicates = list(set(string))
     #print(no_duplicates)
-    with open('dicts/'+(file_name+'.csv'), 'w') as new_dict:
+    with open('dicts/'+("dictionary_complete"+'.csv'), 'w') as new_dict:
         new_dict.write('\n'.join(no_duplicates))
 
 
-dict_gen('1000-most-common-words.txt')
+dict_gen()

@@ -46,6 +46,7 @@ button{
 #guess{
   background-color: #e9d5ec;
   border-color: #d81895;
+  font-size: 250%;
 }
 
 #dictionary_choice{
