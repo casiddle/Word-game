@@ -52,7 +52,8 @@ def guessed_word(guess):
 
 
 
-
+with open('dicts/dictionary.csv', 'r') as file:
+    complete_dictionary = set(word.strip().lower() for word in file)
 
 @app.route("/")
 def index():
@@ -86,59 +87,64 @@ def guess():
     data = request.get_json()
     print(f"Received data: {data}")  # Debug line
     try:
-        # Retrieve guess and session variables
+        # Retrieve guess 
         guessed_word = request.json.get('guess', '').lower()
-        numword = session.get('numword')
-        random_word = session.get('random_word')
-        counter = session.get('counter', 0)
-        history=session.get("guess_history",[])
-
-        if numword is None or random_word is None:
-            return jsonify({"error": "Game has not started or session expired"}), 400
-
-        guessed_word_numbers = [number_assigning(char) for char in guessed_word]
-
-        # Initialize response and message
-        response = 'default'
-        message = 'default'
-
-        # Compare guessed word with the target word
-        if guessed_word_numbers == numword:
-            response = 'correct'
-            message = f"Well done, <em>{random_word}</em> was the word, it took you {counter + 1} guesses."
+        if guessed_word not in complete_dictionary:
+        
+            return jsonify({'result': 'invalid', 'message': f"'{guessed_word}' is not a valid word in our dictionary."})
         else:
-            # Provide feedback based on the comparison
-            if len(numword) < len(guessed_word_numbers):
-                for element in range(0, len(numword)):
-                    response = compare(guessed_word_numbers[element], numword[element])
-                    if response == 'higher' or response == 'lower':
-                        break
+            # Retrieve session variables
+            numword = session.get('numword')
+            random_word = session.get('random_word')
+            counter = session.get('counter', 0)
+            history=session.get("guess_history",[])
 
+            if numword is None or random_word is None:
+                return jsonify({"error": "Game has not started or session expired"}), 400
+
+            guessed_word_numbers = [number_assigning(char) for char in guessed_word]
+
+            # Initialize response and message
+            response = 'default'
+            message = 'default'
+
+            # Compare guessed word with the target word
+            if guessed_word_numbers == numword:
+                response = 'correct'
+                message = f"Well done, <em>{random_word}</em> was the word, it took you {counter + 1} guesses."
             else:
-                for element in range(0, len(guessed_word_numbers)):
-                    response = compare(guessed_word_numbers[element], numword[element])
-
-                    if response == 'higher' or response == 'lower':
-                        break
-
-            if response == 'same':
+                # Provide feedback based on the comparison
                 if len(numword) < len(guessed_word_numbers):
-                    response="lower"
-                elif len(guessed_word_numbers) < len(numword):
-                    response="higher"    
-        #Update guess history
-        guess_result={
-            "guess":guessed_word, 
-            "result":response,
-            "message":message
-        }
-      
-        history.append(guess_result)
-        session["guess_history"]=history
-        # Update the guess counter in the session
-        session['counter'] = counter + 1
+                    for element in range(0, len(numword)):
+                        response = compare(guessed_word_numbers[element], numword[element])
+                        if response == 'higher' or response == 'lower':
+                            break
 
-        return jsonify({"result": response, "message": message, "history":history})
+                else:
+                    for element in range(0, len(guessed_word_numbers)):
+                        response = compare(guessed_word_numbers[element], numword[element])
+
+                        if response == 'higher' or response == 'lower':
+                            break
+
+                if response == 'same':
+                    if len(numword) < len(guessed_word_numbers):
+                        response="lower"
+                    elif len(guessed_word_numbers) < len(numword):
+                        response="higher"    
+            #Update guess history
+            guess_result={
+                "guess":guessed_word, 
+                "result":response,
+                "message":message
+            }
+        
+            history.append(guess_result)
+            session["guess_history"]=history
+            # Update the guess counter in the session
+            session['counter'] = counter + 1
+
+            return jsonify({"result": response, "message": message, "history":history})
 
     except Exception as e:
         print(f"Error: {e}")

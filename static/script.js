@@ -96,6 +96,11 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
         .then(data => {
+
+            if(data.result=="invalid"){
+                alert(data.message);
+                return;
+            }
             feedback.innerText = data.result;
             // Update guess history
             const newHistoryItem = document.createElement('p');
