@@ -15,7 +15,9 @@ h1 {
   line-height: 10%;
 }
 
-
+p{
+  font-size: 150%;
+}
 
 em {
   font-weight: bold;
