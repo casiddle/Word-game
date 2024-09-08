@@ -17,4 +17,9 @@ If you would prefer a more user friendly interface, you can play the game throug
 2. static  
 3. templates  
 4. main_app.py  
-In the terminal you need to put "python main_app.py" then click the link following the text "Running on".
+In the terminal you need to put "python main_app.py" then click the link following the text "Running on". This should open a webpage in your default browser.
+
+## Generating a new dictionary
+The python file new_dict_generator.py can be used to create a new dictionary from which the random word can be chosen. This is done by reading words from a text file and converting them to a list of words (technically a set as there are no repeats). In order to do this the user needs the folder text_files and the python file.  
+ 
+If you wanted this new dictionary to appear on the webpage version of the game you would have to make the necessary addition to the html file.
