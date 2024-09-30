@@ -18,7 +18,8 @@ def dict_gen(file_name):
     words = words.lower()
 
     #tokenizer = RegexpTokenizer(r'[a-z]\w+\w{3}')
-    tokenizer = RegexpTokenizer(r'\b[a-z]+[a-z]{3}')
+    #tokenizer = RegexpTokenizer(r'\b[a-z]+[a-z]{3}')
+    tokenizer = RegexpTokenizer(r'\b[a-z]+[a-z]')
     string = tokenizer.tokenize(words)
     no_duplicates = list(set(string))
     #print(no_duplicates)
@@ -26,4 +27,4 @@ def dict_gen(file_name):
         new_dict.write('\n'.join(no_duplicates))
 
 
-dict_gen()
+dict_gen('text_files/Oxford English Dictionary.txt')

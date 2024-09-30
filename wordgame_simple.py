@@ -51,24 +51,11 @@ def guessed_word():
     return guessword
 
 
-def dict_menu():
-    files = os.listdir(os.getcwd()+'/dicts')
-    for f in enumerate(files):
-        list(f)
-        print(str(f[0]+1)+'. '+f[1])
-    try:
-        dict_choice = int(input('Enter the number of the dictionary you want to use: '))
-        choice = files[(dict_choice-1)]
-    except IndexError:
-        print("I'm sorry that is not a valid dictionary please try again")
-        choice = dict_menu()
-
-    return choice
 
 
 def main_code():
 
-    random_word = word_generator('dicts/dictionary_HARD.csv')
+    random_word = word_generator('dicts/dictionary_complete.csv')
 
     numword = []
     for x in random_word:
